@@ -18,8 +18,8 @@
  *    shallowCopy({}) => {}
  */
 function shallowCopy(obj) {
-  const rez = {};
-  return Object.assign(rez, obj);
+  const res = {};
+  return Object.assign(res, obj);
 }
 
 /**
@@ -33,8 +33,17 @@ function shallowCopy(obj) {
  *    mergeObjects([{a: 1, b: 2}, {b: 3, c: 5}]) => {a: 1, b: 5, c: 5}
  *    mergeObjects([]) => {}
  */
-function mergeObjects(/* objects */) {
-  throw new Error('Not implemented');
+function mergeObjects(objects) {
+  if (objects.length > 0) {
+    const res = {};
+    objects.forEach((item) => {
+      Object.entries(item).forEach(([key, value]) => {
+        res[key] = (res[key] || 0) + value;
+      });
+    });
+    return res;
+  }
+  return {};
 }
 
 /**
